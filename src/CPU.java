@@ -41,21 +41,22 @@ public class CPU implements Player {
         return randomColor; ///////////check if color is valid later
     }
 
-    public int getRandomNumber(String color){
+    public int getRandomNumber(String color, Board GameBoard){
 //        String color = this.getRandomColor();
 
         // maxNumber: max number of values to remove
         int maxNumber = 0;
         switch (color){
 
+            // make sure that the max number that you can pick is  not larger than the arrayList
             case "g":
-                maxNumber = 3;
+                maxNumber = GameBoard.greens.size();
 
             case "y":
-                maxNumber = 7;
+                maxNumber = GameBoard.yellows.size();
 
             case "o":
-                maxNumber = 5;
+                maxNumber = GameBoard.oranges.size();
         }
 
         Random r = new Random();

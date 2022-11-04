@@ -47,51 +47,61 @@ public class Board {
         switch (whosFirst){
             case 1:
                 this.userFirstOrder(User,Cpu);
+                break;
             case 2:
                 this.cpuFirstOrder(User,Cpu);
+                break;
 
         }
 
-       printBoard();
+//       printBoard();
     }
 
     public void userFirstOrder(User User,CPU Cpu){
         boolean gameover = false;
-        while(true) {
-            this.userMove(User,gameover);
-            this.updateValidColors();
-            System.out.println();
-            System.out.println("valid colors:   " + this.validColors);
-            System.out.println();
+        while(gameover == false) {
 
-                this.RandomMove(Cpu,gameover);
+            // User moves
+            this.userMove(User,gameover);
+            this.printBoard();
             this.updateValidColors();
-            System.out.println();
-            System.out.println("valid colors:   " + this.validColors);
-            System.out.println();
-            /// ADD CASE FOR SMART CPU
+
+            gameover = this.isWinner(User);
+
+            // CPU moves
+            this.RandomMove(Cpu,gameover);
+            this.printBoard();
+            this.updateValidColors();
+
+            if(gameover == false){
+                gameover = this.isWinner(Cpu);
+            }
+
+//            System.out.println(gameover);
+
         }
     }
     public void cpuFirstOrder(User User,CPU Cpu){
 
         // results tell player who won the game
         boolean gameover = false;
-
-        while(!gameover) {
+        while(gameover == false) {
             this.RandomMove(Cpu,gameover);
             this.printBoard();
-//            this.updateValidColors();
+            this.updateValidColors();
 
             gameover = this.isWinner(Cpu);
-            System.out.println(gameover);
+//            System.out.println(gameover);
 
             /// ADD CASE FOR SMART CPU
 
             this.userMove(User,gameover);
             this.printBoard();
-//            this.updateValidColors();
+            this.updateValidColors();
 
-            gameover = this.isWinner(User);
+            if(gameover == false){
+                gameover = this.isWinner(User);
+            }
 
         }
     }
@@ -113,7 +123,7 @@ public class Board {
     }
 
     public void userMove(User User, boolean gameOver){
-        if(gameOver == false){
+        if(gameOver == true){
             System.out.println("The User has lost the game");
         }
         else {
@@ -134,7 +144,7 @@ public class Board {
         }
     }
     public void RandomMove(CPU Cpu,boolean gameOver){
-        if(gameOver == false){
+        if(gameOver == true){
             System.out.println("The Cpu has lost the game");
 
         }
@@ -145,7 +155,7 @@ public class Board {
 //            }
             // check to see if color is valid
             System.out.println("The selected random color:  " + colorCPU);
-            int amountCPU = Cpu.getRandomNumber(colorCPU);
+            int amountCPU = Cpu.getRandomNumber(colorCPU,this);
 
             switch (colorCPU) {
                 case "g":
@@ -183,8 +193,10 @@ public class Board {
 
     }
     public boolean isWinner(Player player) {
+        boolean isWinner = false;
         // if all the arrays are empty, the person who took the last stone is the winner
         if (this.validColors.isEmpty()) {
+            isWinner = true;
             if (player instanceof User) {
                 System.out.println("Winner: User");
 
@@ -198,7 +210,7 @@ public class Board {
                 System.out.println();
             }
 
-        } return true;
+        } return isWinner;
     }
 
 

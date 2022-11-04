@@ -14,6 +14,8 @@ public class Main {
     // 2: CPU
     public static void main(String[] args) {
         Board GameBoard = new Board();
+        CPU Cpu = new CPU();
+        System.out.println(GameBoard.isWinner(Cpu));
 
 
         GameBoard.run();
