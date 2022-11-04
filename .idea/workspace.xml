@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="922a7c3e-be89-4c5b-9867-cacabd85fc1c" name="Changes" comment="Basic User Logic for Q2">
-      <change afterPath="$PROJECT_DIR$/ReadME.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CPU.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+    <list default="true" id="922a7c3e-be89-4c5b-9867-cacabd85fc1c" name="Changes" comment="changed everything&#10;currently working on initialize and parts 3 and 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CPU.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +72,7 @@
       <workItem from="1667277033350" duration="1318000" />
       <workItem from="1667351537117" duration="1867000" />
       <workItem from="1667496644730" duration="19808000" />
-      <workItem from="1667580116688" duration="1401000" />
+      <workItem from="1667580116688" duration="6174000" />
     </task>
     <task id="LOCAL-00001" summary="Added subtasks for  parts 2 and 3">
       <created>1666757281924</created>
@@ -91,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666804798763</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changed everything&#10;currently working on initialize and parts 3 and 4">
+      <created>1667581822000</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667581822000</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +127,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added subtasks for  parts 2 and 3" />
     <MESSAGE value="Basic User Logic for Q2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic User Logic for Q2" />
+    <MESSAGE value="changed everything&#10;currently working on initialize and parts 3 and 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed everything&#10;currently working on initialize and parts 3 and 4" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

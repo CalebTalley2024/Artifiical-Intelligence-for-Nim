@@ -3,10 +3,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class CPU implements Player {
-    String type = "Easy";
+//    String type = "Easy";
 
-    public CPU(String type){
-        type = this.type;
+    public CPU(){
+//        type = this.type;
     }
     public boolean isRandomColorValid(Board GameBoard, String color){
         boolean isValid = true;
