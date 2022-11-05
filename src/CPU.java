@@ -1,12 +1,13 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class CPU implements Player {
-//    String type = "Easy";
+    String type = "Easy";
 
-    public CPU(){
-//        type = this.type;
+    public CPU(String type){
+        this.type = type;
     }
     public boolean isRandomColorValid(Board GameBoard, String color){
         boolean isValid = true;
@@ -66,6 +67,95 @@ public class CPU implements Player {
         System.out.println("The selected random amount: " + randAmount);
         return randAmount;
     }
+
+    public void getXORmarker(Board GameBoard){
+        /*
+    if you have a winning position, do this \
+
+        test removing a stone increasingly in each marker pile. make an array of marker removals that result in a xor of 0
+
+    if you dont, just use random
+     */
+
+        // current XOR
+        int xorNum = GameBoard.opXOR(GameBoard.greens.size(), GameBoard.yellows.size(),GameBoard.oranges.size());
+
+
+
+
+        if(xorNum != 0){
+            // iterate through each marker array and find combinations that make xorNum = 0
+
+
+        }
+
+    }
+    public void getWinPairs(ArrayList<String[]> winXOR,String color,Board GameBoard){
+//        ArrayList<String[]> winXOR = new ArrayList<String[]>();
+        switch(color){
+            case "g":
+                // go through all pairs that give you 0 with XOR operator
+                for(int i = 1; i< GameBoard.greens.size();i++){
+                    int newGreens = GameBoard.greens.size() - i;
+                    if(GameBoard.opXOR(newGreens,GameBoard.yellows.size(),GameBoard.oranges.size()) == 0 ){
+                        String[] winPair = {"g",Integer.toString(i)};
+                        winXOR.add(winPair);
+                    }
+                }
+                break;
+            case "y":
+                for(int i = 1; i< GameBoard.yellows.size();i++){
+                    int newYellows = GameBoard.yellows.size() - i;
+                    if(GameBoard.opXOR(GameBoard.greens.size(),newYellows,GameBoard.oranges.size()) == 0 ){
+                        String[] winPair = {"y",Integer.toString(i)};
+                        winXOR.add(winPair);
+                    }
+                }
+                break;
+            case "o":
+                for(int i = 1; i< GameBoard.oranges.size();i++){
+                    int newOranges = GameBoard.oranges.size() - i;
+                    if(GameBoard.opXOR(GameBoard.greens.size(),GameBoard.yellows.size(),newOranges) == 0 ){
+                        String[] winPair = {"o",Integer.toString(i)};
+                        winXOR.add(winPair);
+                    }
+                }
+                break;
+        }
+//        return winXOR;
+
+    }
+
+    public String[] getXORmove(ArrayList<String[]> getWinPairs){
+        //// deal with case when there are NO string arrays
+
+
+        Random random = new Random();
+        int randomMoveIndex = random.nextInt(getWinPairs.size());
+        String[] randomPair = getWinPairs.get(randomMoveIndex);
+
+        System.out.println("CPU has decided to pick the color: " + randomPair[0]);
+        System.out.println("CPU has decided to take out " + randomPair[1]+ " pairs");
+        return randomPair;
+    }
+
+    public void xorMarkerRemoval(String[] move,Board GameBoard){
+        String color = move[0];
+        int amount = Integer.parseInt(move[1]);
+
+        switch (color) { //////// maybe make a helper function
+            case "g":
+                GameBoard.removeMarker(GameBoard.greens,  amount);
+                break;
+            case "y":
+                GameBoard.removeMarker(GameBoard.yellows,  amount);
+                break;
+            case "o":
+                GameBoard.removeMarker(GameBoard.oranges, amount);
+                break;
+        }
+    }
+
     public void smartColorPick(){}
     public void smartRemoval(){}
 }

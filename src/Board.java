@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -38,12 +39,22 @@ public class Board {
         // random vs smart mode
         System.out.println("Pick the difficulty of the CPU you face");
         // easy uses random selection
-        System.out.println("1: Easy");
-        System.out.println("2: Impossible" );
+        System.out.println("1: Random");
+        System.out.println("2: Hard" );
 
         Integer cpuDifficulty = initializeGame.nextInt();
         User User = new User();
-        CPU Cpu = new CPU();
+        // initial CPU (you should not see this)
+        CPU Cpu = new CPU("not typed yet");
+        switch(cpuDifficulty){
+            case 1:
+                Cpu = new CPU("random");
+                break;
+            case 2:
+                Cpu = new CPU("xor");
+                break;
+        }
+
         switch (whosFirst){
             case 1:
                 this.userFirstOrder(User,Cpu);
@@ -69,13 +80,65 @@ public class Board {
             gameover = this.isWinner(User);
 
             // CPU moves
-            this.RandomMove(Cpu,gameover);
+//            this.RandomMove(Cpu,gameover);
+//            this.printBoard();
+//            this.updateValidColors();
+//
+//            if(gameover == false){
+//                gameover = this.isWinner(Cpu);
+//            }
+            if(Cpu.type == "random"){
+                this.RandomMove(Cpu,gameover);
+
+            }
+            else if(Cpu.type == "xor"){
+                // calculate the XOR value
+                int xorSum = opXOR(this.greens.size(),this.yellows.size(),this.oranges.size());
+                // if the CPU is in a losing position, the CPU will play randomly
+                if(xorSum == 0){
+                    this.RandomMove(Cpu,gameover);
+                    this.printBoard();
+                    this.updateValidColors();
+                }
+                else{
+                    // make array for winning moves [color, amountToRemove]
+                    ArrayList<String[]> winXORs = new ArrayList<String[]>();
+                    if(oneGroupRemaining(this.greens,this.yellows,this.oranges)){
+                        this.greens.clear();
+                        this.yellows.clear();
+                        this.oranges.clear();
+                        System.out.println("The CPU took the last remaining set of markers");
+
+                    }
+
+                    else {
+
+                        // add all winning pairs to winXOR
+                        Cpu.getWinPairs(winXORs, "g", this);
+                        Cpu.getWinPairs(winXORs, "y", this);
+                        Cpu.getWinPairs(winXORs, "o", this);
+
+                        // get random pair from winXOR
+                        // we will use this to remove some markers
+
+                        if (winXORs.size() == 0) {
+
+                        } else {
+                            String[] xorPairToRemove = Cpu.getXORmove(winXORs);
+                            Cpu.xorMarkerRemoval(xorPairToRemove, this);
+                        }
+                    }
+
+
+
+
+                }
+            }
+
             this.printBoard();
             this.updateValidColors();
+            gameover = this.isWinner(Cpu);
 
-            if(gameover == false){
-                gameover = this.isWinner(Cpu);
-            }
 
 //            System.out.println(gameover);
 
@@ -86,11 +149,60 @@ public class Board {
         // results tell player who won the game
         boolean gameover = false;
         while(gameover == false) {
-            this.RandomMove(Cpu,gameover);
+            if(Cpu.type == "random"){
+                this.RandomMove(Cpu,gameover);
+
+            }
+            else if(Cpu.type == "xor"){
+                // calculate the XOR value
+                int xorSum = opXOR(this.greens.size(),this.yellows.size(),this.oranges.size());
+                // if the CPU is in a losing position, the CPU will play randomly
+                if(xorSum == 0){
+                    this.RandomMove(Cpu,gameover);
+                    this.printBoard();
+                    this.updateValidColors();
+                }
+                else{
+                    // make array for winning moves [color, amountToRemove]
+                    ArrayList<String[]> winXORs = new ArrayList<String[]>();
+                    if(oneGroupRemaining(this.greens,this.yellows,this.oranges)){
+                        this.greens.clear();
+                        this.yellows.clear();
+                        this.oranges.clear();
+                        System.out.println("The CPU took the last remaining set of markers");
+
+                    }
+
+                    else {
+
+                        // add all winning pairs to winXOR
+                        Cpu.getWinPairs(winXORs, "g", this);
+                        Cpu.getWinPairs(winXORs, "y", this);
+                        Cpu.getWinPairs(winXORs, "o", this);
+
+                        // get random pair from winXOR
+                        // we will use this to remove some markers
+
+                        if (winXORs.size() == 0) {
+
+                        } else {
+                            String[] xorPairToRemove = Cpu.getXORmove(winXORs);
+                            Cpu.xorMarkerRemoval(xorPairToRemove, this);
+                        }
+                    }
+
+
+
+
+                }
+            }
+
             this.printBoard();
             this.updateValidColors();
-
             gameover = this.isWinner(Cpu);
+
+
+
 //            System.out.println(gameover);
 
             /// ADD CASE FOR SMART CPU
@@ -111,7 +223,7 @@ public class Board {
 //        }
 //    }
 
-    public void removeMarker(ArrayList<String> markers, String color, int amount){
+    public void removeMarker(ArrayList<String> markers,  int amount){
 //        for(int i = 0; i<amount ;i++)
         // use counter to remove markers
         int counter = 0;
@@ -131,16 +243,16 @@ public class Board {
             int amount = User.pickAmount();
             switch (color) { //////// maybe make a helper function
                 case "g":
-                    this.removeMarker(this.greens, color, amount);
+                    this.removeMarker(this.greens,  amount);
                     break;
                 case "y":
-                    this.removeMarker(this.yellows, color, amount);
+                    this.removeMarker(this.yellows,  amount);
                     break;
                 case "o":
-                    this.removeMarker(this.oranges, color, amount);
+                    this.removeMarker(this.oranges, amount);
                     break;
             }
-            this.isWinner(User);
+            this.isWinner(User); ///////        remove??????
         }
     }
     public void RandomMove(CPU Cpu,boolean gameOver){
@@ -159,13 +271,13 @@ public class Board {
 
             switch (colorCPU) {
                 case "g":
-                    this.removeMarker(this.greens, colorCPU, amountCPU);
+                    this.removeMarker(this.greens,  amountCPU);
                     break;
                 case "y":
-                    this.removeMarker(this.yellows, colorCPU, amountCPU);
+                    this.removeMarker(this.yellows,  amountCPU);
                     break;
                 case "o":
-                    this.removeMarker(this.oranges, colorCPU, amountCPU);
+                    this.removeMarker(this.oranges, amountCPU);
                     break;
             }
             this.isWinner(Cpu);
@@ -213,6 +325,34 @@ public class Board {
         } return isWinner;
     }
 
+    // Xor operation: ^
+// function
+    public int opXOR(int aOne, int aTwo, int aThree){
 
+        //apply bit operator
+        int xor = aOne ^ aTwo ^ aThree;
 
+        return xor;
+    }
+
+    // check to see if only one pair remains in
+    public boolean oneGroupRemaining(ArrayList<String> gs,ArrayList<String>ys, ArrayList<String>os){
+        boolean bool = false;
+        if((gs.size() != 0) && (ys.size() == 0) && (os.size() ==0)){
+            bool = true;
+        }
+        if((gs.size() == 0) && (ys.size() != 0) && (os.size() ==0)){
+            bool = true;
+        }
+        if((gs.size() == 0) && (ys.size() == 0) && (os.size() !=0)){
+            bool = true;
+        }
+
+            return bool;
+    }
 }
+
+
+
+
+
