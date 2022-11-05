@@ -15,7 +15,7 @@
     - Hard: Will make the most optimal legal move each turn it gets.
     - To have a chance to win, you will have to.....
         - play perfectly
-        - have to play first
+        - have to play first 
 
 ### Color
 - You will be asked to pick **one** out of the **three** colors (green, yellow and orange)
