@@ -52,19 +52,22 @@ public class CPU implements Player {
             // make sure that the max number that you can pick is  not larger than the arrayList
             case "g":
                 maxNumber = GameBoard.greens.size();
+                break;
 
             case "y":
                 maxNumber = GameBoard.yellows.size();
+                break;
 
             case "o":
                 maxNumber = GameBoard.oranges.size();
+                break;
         }
 
         Random r = new Random();
         // gets random number btw 1 and the maxNumber - 1
         int randAmount= r.nextInt((maxNumber-1) - 1) + 1;
 
-        System.out.println("The selected random amount: " + randAmount);
+        System.out.println("The CPU has randomly decided to remove this amount of markers: " + randAmount);
         return randAmount;
     }
 

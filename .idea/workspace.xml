@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="922a7c3e-be89-4c5b-9867-cacabd85fc1c" name="Changes" comment="Everything works!&#10;&#10;Now I just have to  make small changes">
-      <change beforePath="$PROJECT_DIR$/ReadME.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadME.md" afterDir="false" />
+    <list default="true" id="922a7c3e-be89-4c5b-9867-cacabd85fc1c" name="Changes" comment="Added ReadME">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CPU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,19 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/My Drive/CS WPI Classes - copy/Personal Projects/TicTacToe&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "G:/My Drive/CS WPI Classes - copy/Personal Projects/TicTacToe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -73,7 +78,7 @@
       <workItem from="1667351537117" duration="1867000" />
       <workItem from="1667496644730" duration="19808000" />
       <workItem from="1667580116688" duration="6174000" />
-      <workItem from="1667598847324" duration="15170000" />
+      <workItem from="1667598847324" duration="18015000" />
     </task>
     <task id="LOCAL-00001" summary="Added subtasks for  parts 2 and 3">
       <created>1666757281924</created>
@@ -110,7 +115,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667614130311</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Everything works!&#10;&#10;Now I just have to  make small changes">
+      <created>1667615415040</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667615415040</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added ReadME">
+      <created>1667615437915</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667615437915</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +164,8 @@
     <MESSAGE value="changed everything&#10;currently working on initialize and parts 3 and 4" />
     <MESSAGE value="all basic logic works&#10;&#10;time to start the bit logic" />
     <MESSAGE value="Everything works!&#10;&#10;Now I just have to  make small changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Everything works!&#10;&#10;Now I just have to  make small changes" />
+    <MESSAGE value="Added ReadME" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ReadME" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

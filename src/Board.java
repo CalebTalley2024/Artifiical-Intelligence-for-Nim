@@ -20,10 +20,12 @@ public class Board {
 
     }
     public void printBoard(){
+        System.out.println("----------------------");
+        System.out.println("These are all of the remaining markers");
         System.out.println("Green" + this.greens);
         System.out.println("Yellow" + this.yellows);
         System.out.println("Oranges" + this.oranges);
-        System.out.println();
+        System.out.println("----------------------");
     }
 
 
@@ -31,13 +33,16 @@ public class Board {
     public void run(){
         // who goes first
         Scanner initializeGame = new Scanner(System.in);
-        System.out.println("Who do you want to start the game first");
+        System.out.println("Who will go first?");
         System.out.println("1: The User (You)" );
         System.out.println("2: The CPU");
+        System.out.println("----------------------");
         Integer whosFirst = initializeGame.nextInt();
 
         // random vs smart mode
-        System.out.println("Pick the difficulty of the CPU you face");
+        System.out.println("Pick the difficulty of the CPU:");
+        System.out.println("----------------------");
+
         // easy uses random selection
         System.out.println("1: Random");
         System.out.println("2: Hard" );
@@ -48,9 +53,15 @@ public class Board {
         CPU Cpu = new CPU("not typed yet");
         switch(cpuDifficulty){
             case 1:
+                System.out.println("You chose the random CPU");
+                System.out.println("----------------------");
+                System.out.println("----------------------");
                 Cpu = new CPU("random");
                 break;
             case 2:
+                System.out.println("You chose the hard CPU. Good luck!!");
+                System.out.println("----------------------");
+                System.out.println("----------------------");
                 Cpu = new CPU("xor");
                 break;
         }
@@ -64,15 +75,19 @@ public class Board {
                 break;
 
         }
+        System.out.println("----------------------");
+        System.out.println("----------------------");
+        System.out.println("Thank you for Playing :D");
 
-//       printBoard();
     }
 
     public void userFirstOrder(User User,CPU Cpu){
+        this.printBoard();
         boolean gameover = false;
         while(gameover == false) {
 
             // User moves
+
             this.userMove(User,gameover);
             this.printBoard();
             this.updateValidColors();
@@ -137,6 +152,7 @@ public class Board {
 
             this.printBoard();
             this.updateValidColors();
+
             gameover = this.isWinner(Cpu);
 
 
@@ -236,7 +252,7 @@ public class Board {
 
     public void userMove(User User, boolean gameOver){
         if(gameOver == true){
-            System.out.println("The User has lost the game");
+            System.out.println("You, the User has lost the game. ");
         }
         else {
             String color = User.pickColor();
@@ -252,12 +268,12 @@ public class Board {
                     this.removeMarker(this.oranges, amount);
                     break;
             }
-            this.isWinner(User); ///////        remove??????
+//            this.isWinner(User); ///////        remove??????
         }
     }
     public void RandomMove(CPU Cpu,boolean gameOver){
         if(gameOver == true){
-            System.out.println("The Cpu has lost the game");
+            System.out.println("The CPU has lost the game");
 
         }
         else {
@@ -266,7 +282,7 @@ public class Board {
 //            colorCPU = Cpu.getRandomColor();
 //            }
             // check to see if color is valid
-            System.out.println("The selected random color:  " + colorCPU);
+            System.out.println("The CPU has selected the random color:  " + colorCPU);
             int amountCPU = Cpu.getRandomNumber(colorCPU,this);
 
             switch (colorCPU) {
@@ -280,7 +296,7 @@ public class Board {
                     this.removeMarker(this.oranges, amountCPU);
                     break;
             }
-            this.isWinner(Cpu);
+//            this.isWinner(Cpu);
         }
     }
 
@@ -294,6 +310,8 @@ public class Board {
         if(this.oranges.isEmpty()){
             this.validColors.remove("o");
         }
+        System.out.println("----------------------");
+        System.out.println("This array shows what colored sets remain");
         System.out.println(this.validColors);
     }
     public boolean isEmpty(){
@@ -310,10 +328,14 @@ public class Board {
         if (this.validColors.isEmpty()) {
             isWinner = true;
             if (player instanceof User) {
-                System.out.println("Winner: User");
+                System.out.println("And the Winner is..... the User");
+                System.out.println("The CPU might be angry that the User has won and claim that he himself(the CPU) has won");
+                System.out.println("----------------------");
+                System.out.println("----------------------");
+                System.out.println("----------------------");
 
             } else if (player instanceof CPU) {
-                System.out.println("Winner: Cpu");
+                System.out.println("And the Winner is..... the Cpu");
             }
             // if the game isn't over, print a line
             else {
