@@ -42,12 +42,12 @@ public class CPU implements Player {
         return randomColor; ///////////check if color is valid later
     }
 
-    public int getRandomNumber(String color, Board GameBoard){
+    public int getRandomNumber(String color, Board GameBoard) {
 //        String color = this.getRandomColor();
 
         // maxNumber: max number of values to remove
         int maxNumber = 0;
-        switch (color){
+        switch (color) {
 
             // make sure that the max number that you can pick is  not larger than the arrayList
             case "g":
@@ -63,12 +63,22 @@ public class CPU implements Player {
                 break;
         }
 
-        Random r = new Random();
-        // gets random number btw 1 and the maxNumber - 1
-        int randAmount= r.nextInt((maxNumber-1) - 1) + 1;
+        // getting random number to take out
+        int randAmount = 0;
+        // if the number is 1, just get rid of the last stone in the list
+        if (maxNumber == 1) {
+            randAmount = maxNumber;
+            // otherwise, get a random number
+        } else {
+            Random r = new Random();
+            // gets random number btw 1 and the maxNumber - 1
 
-        System.out.println("The CPU has randomly decided to remove this amount of markers: " + randAmount);
-        return randAmount;
+            randAmount = r.nextInt((maxNumber - 1)) + 1; ////THIS CANNOT BE <=0, MAKE IF STATEMENT
+
+            System.out.println("The CPU has randomly decided to remove this amount of markers: " + randAmount);
+
+        }return randAmount;
+
     }
 
     public void getXORmarker(Board GameBoard){

@@ -51,6 +51,7 @@ public class Board {
         User User = new User();
         // initial CPU (you should not see this)
         CPU Cpu = new CPU("not typed yet");
+        // change type of CPU to random or XOR(hard)
         switch(cpuDifficulty){
             case 1:
                 System.out.println("You chose the random CPU");
@@ -65,7 +66,7 @@ public class Board {
                 Cpu = new CPU("xor");
                 break;
         }
-
+        this.printBoard();
         switch (whosFirst){
             case 1:
                 this.userFirstOrder(User,Cpu);
@@ -82,12 +83,11 @@ public class Board {
     }
 
     public void userFirstOrder(User User,CPU Cpu){
-        this.printBoard();
+
         boolean gameover = false;
         while(gameover == false) {
 
             // User moves
-
             this.userMove(User,gameover);
             this.printBoard();
             this.updateValidColors();
@@ -102,6 +102,8 @@ public class Board {
 //            if(gameover == false){
 //                gameover = this.isWinner(Cpu);
 //            }
+            // if the winner has not yet been determined, let the CPU play a turn
+            if(gameover == false){
             if(Cpu.type == "random"){
                 this.RandomMove(Cpu,gameover);
 
@@ -153,7 +155,10 @@ public class Board {
             this.printBoard();
             this.updateValidColors();
 
-            gameover = this.isWinner(Cpu);
+
+                gameover = this.isWinner(Cpu);
+            }
+
 
 
 //            System.out.println(gameover);
@@ -207,9 +212,6 @@ public class Board {
                         }
                     }
 
-
-
-
                 }
             }
 
@@ -222,12 +224,13 @@ public class Board {
 //            System.out.println(gameover);
 
             /// ADD CASE FOR SMART CPU
-
+            // if a winner has not been determines yet, the User gets a chance to play
+            if(gameover == false){
             this.userMove(User,gameover);
             this.printBoard();
             this.updateValidColors();
 
-            if(gameover == false){
+
                 gameover = this.isWinner(User);
             }
 
@@ -310,8 +313,9 @@ public class Board {
         if(this.oranges.isEmpty()){
             this.validColors.remove("o");
         }
-        System.out.println("----------------------");
+
         System.out.println("This array shows what colored sets remain");
+        System.out.println("----------------------");
         System.out.println(this.validColors);
     }
     public boolean isEmpty(){
@@ -324,15 +328,16 @@ public class Board {
     }
     public boolean isWinner(Player player) {
         boolean isWinner = false;
+
         // if all the arrays are empty, the person who took the last stone is the winner
         if (this.validColors.isEmpty()) {
+            boolean alreadyFoundWinner = true;
             isWinner = true;
             if (player instanceof User) {
                 System.out.println("And the Winner is..... the User");
-                System.out.println("The CPU might be angry that the User has won and claim that he himself(the CPU) has won");
                 System.out.println("----------------------");
-                System.out.println("----------------------");
-                System.out.println("----------------------");
+//                System.out.println("----------------------");
+//                System.out.println("----------------------");
 
             } else if (player instanceof CPU) {
                 System.out.println("And the Winner is..... the Cpu");
